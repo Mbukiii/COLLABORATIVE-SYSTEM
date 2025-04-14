@@ -6,7 +6,7 @@
 - **Project Title:** Collaborative Task Management Web App
 - **Date Created:** March 19, 2025
 - **Version:** 1.0
-- **Prepared By:** [Team Member Names]
+- **Prepared By:** Bramwel Muriu, Michelle Mwihaki, Walker Osiemom, Michelle Sission
 
 ## Table of Contents
 1. [Executive Summary](#executive-summary)
