@@ -1,157 +1,237 @@
-# Requirements Specification Document
+# Task Management System - Requirements Specification
 
-## Project: Collaborative Task Management Web App
-## Date: March 19, 2025
-## Version: 1.0
+## Project Overview
 
-## 1. Introduction
+The project is a Task Management System (TMS) that allows users to manage tasks and projects efficiently. It includes a React-based frontend and an Express.js-based backend. The system supports user authentication, task and project management, and user preferences.
 
-### 1.1 Purpose
-This document outlines the functional and non-functional requirements for the Collaborative Task Management Web App. It serves as a guide for the development team and as a reference for stakeholders to understand the system's capabilities.
+## Functional Requirements
 
-### 1.2 Scope
-The Collaborative Task Management Web App will provide a platform for users to create, assign, and manage tasks within teams. The system will include user authentication, task management, team collaboration, and notification features.
+### 1. User Authentication
 
-### 1.3 Definitions, Acronyms, and Abbreviations
-- **JWT**: JSON Web Token
-- **CI/CD**: Continuous Integration/Continuous Deployment
-- **UI/UX**: User Interface/User Experience
-- **API**: Application Programming Interface
+**Registration:**
+- Users can register with a username, email, and password
+- Passwords are hashed before storage
+- Duplicate usernames or emails are not allowed
 
-## 2. Functional Requirements
+**Login:**
+- Users can log in using their email and password
+- A JWT token is issued upon successful login
 
-### 2.1 User Authentication and Authorization
+**Profile Management:**
+- Users can update their username, email, and password
+- Changing the password requires the current password for verification
+- Duplicate usernames or emails are not allowed during updates
 
-#### 2.1.1 User Registration and Login
-- FR-1.1: Users shall be able to register for an account using email and password
-- FR-1.2: Users shall be able to authenticate using Google Auth
-- FR-1.3: Users shall be able to authenticate using JWT
-- FR-1.4: Users shall be able to log out of the system
-- FR-1.5: Users shall be able to reset their password if forgotten
+**Logout:**
+- Users can log out, which clears the token from local storage
 
-#### 2.1.2 User Profiles
-- FR-1.6: Users shall be able to view and edit their profile information
-- FR-1.7: Users shall be able to upload and change profile pictures
-- FR-1.8: Users shall be able to manage their notification preferences
+### 2. Task Management
 
-### 2.2 Task Management
+**Create Task:**
+- Users can create tasks with the following attributes:
+  - Title (required)
+  - Description
+  - Status (todo, in-progress, completed)
+  - Priority (low, medium, high)
+  - Due Date
+  - Associated Project (optional)
 
-#### 2.2.1 Task Creation
-- FR-2.1: Users shall be able to create new tasks with titles and descriptions
-- FR-2.2: Users shall be able to set task deadlines
-- FR-2.3: Users shall be able to assign priority levels to tasks (e.g., Low, Medium, High)
-- FR-2.4: Users shall be able to categorize tasks using tags or labels
+**View Tasks:**
+- Users can view all their tasks in either a list or grid view
+- Tasks can be filtered by:
+  - Status
+  - Priority
+  - Associated Project
+- Tasks can be sorted by:
+  - Due Date
+  - Priority
+  - Status
+  - Created Date
 
-#### 2.2.2 Task Assignment and Management
-- FR-2.5: Users shall be able to assign tasks to team members
-- FR-2.6: Users shall be able to reassign tasks to different team members
-- FR-2.7: Users shall be able to change task status (e.g., To Do, In Progress, Done)
-- FR-2.8: Users shall be able to edit task details after creation
-- FR-2.9: Users shall be able to delete tasks
+**Edit Task:**
+- Users can update task details, including title, description, status, priority, due date, and associated project
 
-#### 2.2.3 Task Viewing and Filtering
-- FR-2.10: Users shall be able to view all tasks assigned to them
-- FR-2.11: Users shall be able to view all tasks they have created
-- FR-2.12: Users shall be able to filter tasks by status, priority, deadline, or assignee
-- FR-2.13: Users shall be able to search for tasks by keywords
+**Delete Task:**
+- Users can delete tasks
 
-### 2.3 Team Collaboration
+### 3. Project Management
 
-#### 2.3.1 Team Creation and Management
-- FR-3.1: Users shall be able to create teams
-- FR-3.2: Users shall be able to invite others to join teams
-- FR-3.3: Users shall be able to leave teams
-- FR-3.4: Team administrators shall be able to remove members from teams
+**Create Project:**
+- Users can create projects with the following attributes:
+  - Name (required)
+  - Description
+  - Status (planning, in-progress, completed, on-hold)
+  - Deadline
 
-#### 2.3.2 Communication
-- FR-3.5: Users shall be able to comment on tasks
-- FR-3.6: Users shall be able to mention team members in comments using @ notation
-- FR-3.7: Users shall be able to attach files to comments and tasks
-- FR-3.8: Users shall have access to a chat functionality within teams
+**View Projects:**
+- Users can view all their projects in either a list or grid view
+- Projects can be filtered by status
+- Projects can be sorted by:
+  - Deadline
+  - Status
+  - Created Date
 
-### 2.4 Notifications
+**Edit Project:**
+- Users can update project details, including name, description, status, and deadline
 
-- FR-4.1: Users shall receive notifications when tasks are assigned to them
-- FR-4.2: Users shall receive notifications when task deadlines are approaching
-- FR-4.3: Users shall receive notifications when task status changes
-- FR-4.4: Users shall receive notifications when mentioned in comments
-- FR-4.5: Users shall be able to mark notifications as read
+**Delete Project:**
+- Users can delete projects
 
-### 2.5 Deployment
+**View Project Tasks:**
+- Users can view all tasks associated with a specific project
 
-- FR-5.1: The application shall be deployed using a CI/CD pipeline
-- FR-5.2: The application shall include automated testing in the deployment process
-- FR-5.3: The application shall be deployable to a web server
+### 4. Dashboard
 
-## 3. Non-Functional Requirements
+**Statistics:**
+- Display the total number of tasks and projects
+- Show the number of completed tasks and active projects
+- Calculate and display the task completion rate
 
-### 3.1 Performance
+**Recent Items:**
+- Display the 5 most recent tasks
+- Display the 3 most recent projects
 
-- NFR-1.1: The application shall load within 3 seconds on standard internet connections
-- NFR-1.2: The application shall support at least 100 concurrent users
-- NFR-1.3: Database queries shall execute in under 1 second
+### 5. User Preferences
 
-### 3.2 Security
+- Users can customize the following preferences:
+  - Theme (light, dark, system)
+  - Default task view (list, grid)
+  - Default project view (list, grid)
+  - Default task sort (dueDate, priority, createdAt)
+  - Default project sort (deadline, status, createdAt)
+- Preferences are saved in local storage and applied automatically
 
-- NFR-2.1: All passwords shall be stored using strong encryption
-- NFR-2.2: All communication between client and server shall be encrypted using HTTPS
-- NFR-2.3: The application shall implement protection against common web vulnerabilities (XSS, CSRF, SQL Injection)
-- NFR-2.4: Authentication tokens shall expire after 24 hours of inactivity
+## Non-Functional Requirements
 
-### 3.3 Usability
+### 1. Performance
 
-- NFR-3.1: The user interface shall be intuitive and require minimal training
-- NFR-3.2: The application shall be responsive and work on devices with different screen sizes
-- NFR-3.3: The application shall provide clear feedback for user actions
-- NFR-3.4: The application shall support keyboard navigation for accessibility
+- The system should handle up to 100 concurrent users without significant performance degradation
+- API responses should be returned within 500ms under normal load
 
-### 3.4 Reliability
+### 2. Security
 
-- NFR-4.1: The application shall have an uptime of at least 99%
-- NFR-4.2: The application shall include data backup and recovery procedures
-- NFR-4.3: The application shall handle errors gracefully and provide meaningful error messages
+- Passwords must be hashed using bcrypt
+- JWT tokens must be used for authentication and should expire after 24 hours
+- Sensitive data (e.g., JWT secret, database URI) must be stored in environment variables
 
-### 3.5 Maintainability
+### 3. Scalability
 
-- NFR-5.1: The code shall follow consistent coding standards
-- NFR-5.2: The application shall be modular to allow for easy updates and extensions
-- NFR-5.3: The application shall include comprehensive documentation
+- The backend should be designed to support future features like team collaboration and notifications
 
-## 4. System Interfaces
+### 4. Usability
 
-### 4.1 User Interfaces
-- Web browser interface for desktop users
-- Responsive design for mobile users
+- The UI should be responsive and work seamlessly on desktop and mobile devices
+- Error messages should be user-friendly and descriptive
 
-### 4.2 Hardware Interfaces
-- Standard web server hardware
-- Client devices with web browsers
+### 5. Maintainability
 
-### 4.3 Software Interfaces
-- Integration with Google Authentication API
-- Database management system
-- Web server software
+- The codebase should follow best practices for modularity and readability
+- ESLint should be used to enforce coding standards
 
-### 4.4 Communication Interfaces
-- HTTP/HTTPS protocols
-- WebSockets for real-time notifications
+## System Architecture
 
-## 5. Requirements Traceability Matrix
+### 1. Frontend
 
-| Requirement ID | Description | Priority | Status |
-|---------------|-------------|----------|--------|
-| FR-1.1 | User registration | High | Planned |
-| FR-1.2 | Google Auth | High | Planned |
-| FR-1.3 | JWT Auth | High | Planned |
-| FR-2.1 | Task creation | High | Planned |
-| FR-2.5 | Task assignment | High | Planned |
-| FR-3.1 | Team creation | Medium | Planned |
-| FR-3.5 | Task comments | Medium | Planned |
-| FR-4.1 | Task assignment notifications | Medium | Planned |
-| FR-5.1 | CI/CD pipeline | High | Planned |
+- Framework: React
+- State Management: Context API
+- Routing: React Router
+- Styling: CSS Modules
+- Build Tool: Vite
 
-## 6. Approval
+**Key Components:**
+- Dashboard: Displays user statistics and recent items
+- Tasks: Manages tasks with filtering, sorting, and CRUD operations
+- Projects: Manages projects with filtering, sorting, and CRUD operations
+- Profile: Allows users to update their profile and preferences
+- Auth: Handles login and registration
 
-- Project Sponsor: [Name, Signature, Date]
-- Project Manager: [Name, Signature, Date]
-- Lead Developer: [Name, Signature, Date]
+### 2. Backend
+
+- Framework: Express.js
+- Database: MongoDB
+- Authentication: JWT
+
+**Key Features:**
+- Middleware for authentication and error handling
+- RESTful APIs for tasks, projects, and user management
+- Models for User, Task, and Project
+
+## API Endpoints
+
+### 1. Authentication
+
+- POST /api/auth/register: Register a new user
+- POST /api/auth/login: Log in a user
+- GET /api/auth/me: Get the current user's details
+- PUT /api/auth/profile: Update the user's profile
+
+### 2. Tasks
+
+- GET /api/tasks: Get all tasks for the current user
+- POST /api/tasks: Create a new task
+- GET /api/tasks/:id: Get a specific task by ID
+- PUT /api/tasks/:id: Update a task by ID
+- DELETE /api/tasks/:id: Delete a task by ID
+
+### 3. Projects
+
+- GET /api/projects: Get all projects for the current user
+- POST /api/projects: Create a new project
+- GET /api/projects/:id: Get a specific project by ID
+- PUT /api/projects/:id: Update a project by ID
+- DELETE /api/projects/:id: Delete a project by ID
+- GET /api/projects/:id/tasks: Get all tasks for a specific project
+
+## Data Models
+
+### 1. User
+
+- username: String (required, unique)
+- email: String (required, unique)
+- password: String (hashed)
+- timestamps: CreatedAt, UpdatedAt
+
+### 2. Task
+
+- title: String (required)
+- description: String
+- status: Enum (todo, in-progress, completed)
+- priority: Enum (low, medium, high)
+- dueDate: Date
+- completed: Boolean (default: false)
+- project: Reference to Project
+- user: Reference to User
+- timestamps: CreatedAt, UpdatedAt
+
+### 3. Project
+
+- name: String (required)
+- description: String
+- status: Enum (planning, in-progress, completed, on-hold)
+- startDate: Date (default: now)
+- deadline: Date
+- user: Reference to User
+- timestamps: CreatedAt, UpdatedAt
+
+## Other Requirements
+
+### 1. Frontend
+
+- Hosted on a static hosting service like Vercel or Netlify
+- Build command: npm run build
+
+### 2. Backend
+
+- Hosted on a cloud platform like Heroku or AWS
+- Environment variables:
+  - MONGODB_URI: MongoDB connection string
+  - JWT_SECRET: Secret key for JWT
+
+## Future Enhancements
+
+- Add team collaboration features
+- Implement notifications for task deadlines
+- Add support for file attachments in tasks and projects
+- Integrate analytics for user activity
+
+This document outlines the requirements and architecture of the Task Management System. It serves as a reference for developers, testers, and stakeholders.
