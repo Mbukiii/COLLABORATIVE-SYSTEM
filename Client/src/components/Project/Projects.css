@@ -1,0 +1,584 @@
+/* src/components/Projects/Projects.css */
+.projects-page {
+  padding: 20px;
+}
+
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.view-toggles {
+  display: flex;
+  gap: 8px;
+}
+
+.view-toggle {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.view-toggle.active {
+  background-color: #646cff;
+  color: white;
+  border-color: #646cff;
+}
+
+.add-button {
+  background-color: #646cff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.add-button:hover {
+  background-color: #535bf2;
+}
+
+.projects-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.projects-container.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+.projects-container.list .project-card {
+  margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 24px;
+}
+
+.projects-container.list .project-card h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.projects-container.list .project-actions {
+  margin-top: 0;
+}
+
+.projects-container.list .project-description {
+  display: none;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2rem;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.project-card {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.project-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.project-description {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0.5rem 0;
+}
+
+.project-tasks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.project-tasks svg {
+  color: #646cff;
+}
+
+.project-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.project-actions select {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  width: fit-content;
+}
+
+.status-badge.planning {
+  background: #ffc107;
+  color: #333;
+}
+
+.status-badge.in-progress {
+  background: #17a2b8;
+  color: white;
+}
+
+.status-badge.completed {
+  background: #28a745;
+  color: white;
+}
+
+.status-badge.on-hold {
+  background: #dc3545;
+  color: white;
+}
+
+.deadline {
+  color: #666;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.filters-bar {
+  background-color: white;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-group label {
+  color: #666;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-group select {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #333;
+  background-color: white;
+  cursor: pointer;
+  min-width: 140px;
+}
+
+.filter-group select:hover {
+  border-color: #646cff;
+}
+
+/* Reusing existing modal and form styles from Tasks.css */
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  min-height: 100px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.project-form-container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.project-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button[type="submit"] {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button[type="submit"]:hover {
+  background: #0056b3;
+}
+
+.project-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.project-item:hover {
+  transform: translateY(-2px);
+}
+
+.project-item.selected {
+  border: 2px solid #007bff;
+}
+
+.project-content {
+  margin-bottom: 1rem;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.project-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.project-details {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-tasks-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.task-item {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.task-item.completed {
+  opacity: 0.7;
+}
+
+.priority-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.priority-badge.high {
+  background: #dc3545;
+  color: white;
+}
+
+.priority-badge.medium {
+  background: #ffc107;
+  color: #333;
+}
+
+.priority-badge.low {
+  background: #28a745;
+  color: white;
+}
+
+.error-message {
+  background: #dc3545;
+  color: white;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.no-projects,
+.no-tasks {
+  text-align: center;
+  color: #666;
+  padding: 2rem;
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  .project-card,
+  .filters-bar,
+  .modal {
+    background-color: #1a1a1a;
+    color: rgba(255, 255, 255, 0.87);
+  }
+
+  .project-card h3 {
+    color: rgba(255, 255, 255, 0.87);
+  }
+
+  .project-description,
+  .project-tasks,
+  .deadline {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .filter-group label {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .filter-group select {
+    background-color: #2a2a2a;
+    color: rgba(255, 255, 255, 0.87);
+    border-color: #444;
+  }
+
+  .view-toggle {
+    border-color: #444;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .view-toggle.active {
+    background-color: #646cff;
+    color: white;
+    border-color: #646cff;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .projects-container.list .project-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .projects-container.grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .filter-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-group select {
+    width: 100%;
+  }
+
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .view-toggles {
+    justify-content: center;
+  }
+
+  .project-details {
+    margin-top: 1rem;
+  }
+
+  .project-actions {
+    flex-direction: column;
+  }
+
+  .project-actions select,
+  .project-actions button {
+    width: 100%;
+  }
+}
+
+/* Edit and Delete Button Styles */
+.edit-btn {
+  background: none;
+  border: none;
+  color: #646cff;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.2s ease;
+}
+
+.edit-btn:hover {
+  transform: scale(1.1);
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Theme Support */
+.projects-page.dark {
+  background-color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.projects-page.dark .project-card {
+  background-color: #2a2a2a;
+  border: 1px solid #333;
+}
+
+.projects-page.dark .filters-bar {
+  background-color: #2a2a2a;
+  border: 1px solid #333;
+}
+
+.projects-page.dark .project-card h3 {
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.projects-page.dark .project-description {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.projects-page.dark .deadline,
+.projects-page.dark .project-tasks {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.projects-page.dark .form-group label {
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.projects-page.dark .form-group input,
+.projects-page.dark .form-group select,
+.projects-page.dark .form-group textarea {
+  background-color: #333;
+  color: rgba(255, 255, 255, 0.87);
+  border-color: #444;
+}
+
+.projects-page.dark .button.secondary {
+  background-color: #333;
+  color: rgba(255, 255, 255, 0.87);
+  border-color: #444;
+}
+
+.projects-page.dark .empty-state {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Light theme specifics */
+.projects-page.light {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.projects-page.light .project-card {
+  background-color: white;
+  border: 1px solid #eee;
+}
+
+.projects-page.light .filters-bar {
+  background-color: white;
+  border: 1px solid #eee;
+}
+
+/* Shared theme styles */
+.project-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
